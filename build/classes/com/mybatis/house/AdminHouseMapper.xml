@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AdminHouseDao">
+	<select id="houseinfo" resultType="House"> 
+		SELECT * from house
+	</select>
+	
+	<select id="selectHouseById" resultType="House" parameterType="int">
+		SELECT * from house WHERE house_id = #{house_id}
+	</select>
+	
+	<select id="selectHouseByUname" resultType="House" parameterType="String">
+		SELECT * from house WHERE user_name = #{user_name}
+	</select>
+	
+	<select id="selectHouseByAddr" resultType="House" parameterType="String">
+		SELECT * from house WHERE addr = #{addr}
+	</select>
+	
+	<select id="selectHouseByArea" resultType="House" parameterType="String">
+		SELECT * from house WHERE area = #{area}
+	</select>
+	
+	<select id="selectHouseByDirect" resultType="House" parameterType="String">
+		SELECT * from house WHERE direc = #{direc}
+	</select>
+	
+	<select id="selectHouseByCost" resultType="House" parameterType="String">
+		SELECT * from house WHERE cost = #{cost}
+	</select>
+	
+	<select id="selectHouseByTime" resultType="House" parameterType="String">
+		SELECT * from house WHERE time = #{time}
+	</select>
+	
+	<select id="selectHouseByStatus" resultType="House" parameterType="String">
+		SELECT * from house WHERE status = #{status}
+	</select>
+	
+	<insert id="addHouse" parameterType="House">
+		INSERT INTO house(addr,user_name,area,direc,phone,cost,status,time) VALUES(#{addr},#{user_name},#{area},#{direc},#{phone},#{cost},#{status},#{time})
+	</insert>
+	
+	<update id="modifyHouse" parameterType="House">
+	UPDATE house
+	<set>
+		<if test="addr != null">
+        addr = #{addr},
+      </if>
+      <if test="user_name != null">
+        user_name = #{user_name},
+      </if>
+      <if test="area != null">
+        area = #{area},
+      </if>
+      <if test="direc != null">
+        direc = #{direc},
+      </if>
+      <if test="phone != null">
+        phone = #{phone},
+      </if>
+	  <if test="cost != null">
+        cost = #{cost},
+      </if>
+	  <if test="status != null">
+        status = #{status},
+      </if>
+	  <if test="time != null">
+        time = #{time},
+      </if>
+	</set>
+	WHERE house_id = #{house_id}
+	</update>
+
+	<delete id="deleteAHouse" parameterType="int">
+		DELETE from house WHERE house_id = #{house_id}
+	</delete>
+	
+		<!-- 删除多个房源 -->
+	<delete id="deleteHouses"  parameterType="List">
+		delete from house where id in
+		<foreach item="item" index="index" collection="list"
+		open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- com.dao.UserDao对应Dao接口 -->
+<mapper namespace="com.dao.UserDao">
+	<select id="login" resultType="User" parameterType="User">
+		SELECT * FROM user Where uname = #{uname} AND passwd = #{passwd}
+	</select>
+	
+	<select id="userinfo" resultType="User">
+		SELECT * FROM user
+	</select>
+	
+	
+	
+	<select id="searchByUname" resultType="User" parameterType="User">
+		SELECT * FROM user WHERE uname=#{uname}
+	</select>
+	<select id="searchByRUname" resultType="User" parameterType="User">
+		SELECT * FROM user WHERE uname=#{uname}
+	</select>
+	
+	<insert id="registe" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+		INSERT INTO user(uname,passwd,age,phone,power) VALUES(#{uname},#{passwd},#{age},#{phone},"2")
+	</insert>
+	
+	<select id="searchByUser_Id" parameterType="String" resultType="User">
+		SELECT * FROM user WHERE uname=#{uname}
+	</select>
+	
+	<update id="updateUserInformation" parameterType="User">
+	UPDATE user
+	<set>
+		
+      <if test="uname != null">
+        uname = #{uname},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd},
+      </if>
+      <if test="age != null">
+        age = #{age},
+      </if>
+      <if test="phone != null">
+        phone = #{phone},
+      </if>
+	  <if test="power != null">
+       power = #{power},
+      </if>
+	
+	</set>
+	WHERE user_id = #{user_id}
+	</update>
+	
+	<insert id="addHouseInfo" parameterType="House" >
+		INSERT INTO house(house_id,addr,user_name,area,direc,phone,cost,status,time) VALUES(#{house_id},#{addr},#{user_name},#{area},#{direc},#{phone},#{cost},#{status},#{time})
+	</insert>
+	
+
+</mapper>

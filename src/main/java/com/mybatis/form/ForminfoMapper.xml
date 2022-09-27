@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.FormDao">
+	<select id="formInfo" resultType="Form">
+		SELECT * from form
+	</select>
+	
+	<insert id="addForm" parameterType="Form" useGeneratedKeys="true" keyProperty="house_id">
+		INSERT INTO form(id,house_id,user_id,user_phone,price,date) 
+		VALUES(#{id}, #{house_id}, #{user_id}, #{user_phone}, #{price}, #{date})
+	</insert>
+	
+	<select id="selectForm" resultType="Form" parameterType="int">
+		SELECT * from form where user_id = #{user_id}
+	</select>
+	
+	<select id="selectFormById" resultType="Form" parameterType="int">
+		SELECT * from form where id = #{id}
+	</select>
+	
+	<update id="updateForm" parameterType="Form">
+	UPDATE form
+	<set>
+	  <if test="id != null">
+        id = #{id},
+      </if>
+      <if test="house_id != null">
+        house_id = #{house_id},
+      </if>
+      <if test="user_id != null">
+        user_id = #{user_id},
+      </if>
+      <if test="user_phone != null">
+        user_phone = #{user_phone},
+      </if>
+      <if test="price != null">
+        price = #{price},
+      </if>
+	  <if test="date != null">
+        date = #{date},
+      </if>
+	</set>
+	WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteForm" parameterType="int">
+		DELETE FROM form WHERE id = #{id}
+	</delete>
+	
+	<select id="selectFormByDay" resultType="Form" parameterType="String">
+		SELECT * FROM form where date = #{date}
+	</select>
+	
+	<select id="selectFormByMonth" resultType="Form" parameterType="String">
+		SELECT * FROM form where month(date) = #{date}
+	</select>
+</mapper>

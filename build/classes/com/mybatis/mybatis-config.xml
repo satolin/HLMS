@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="User" type="com.domain.User" />
+		<typeAlias alias="House" type="com.domain.House" />
+		<typeAlias alias="Form" type="com.domain.Form" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/mybatis/user/AdminUserMapper.xml"/>
+		<mapper resource="com/mybatis/user/UserinfoMapper.xml"/>
+		<mapper resource="com/mybatis/form/AdminFormMapper.xml"/>
+		<mapper resource="com/mybatis/form/ForminfoMapper.xml"/>
+		<mapper resource="com/mybatis/house/AdminHouseMapper.xml"/>
+		<mapper resource="com/mybatis/house/HouseinfoMapper.xml"/>
+	</mappers>
+</configuration>

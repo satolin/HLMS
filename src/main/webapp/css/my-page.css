@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* 外面盒子样式 */
+.page_div {
+    text-align: center;
+    margin: 0 10px;
+    color: #666
+}
+
+/* 页数按钮样式 */
+.page_div button input {
+    display: inline-block;
+    min-width: 30px;
+    height: 28px;
+    cursor: pointer;
+    color: #666;
+    font-size: 13px;
+    line-height: 28px;
+    background-color: #f9f9f9;
+    border: 1px solid #dce0e0;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-left: 10px;
+    float: left;
+}
+
+#firstPage, #lastPage, #nextPage, #prePage {
+    width: 100px;
+    color: black;
+    border: 1px solid #0073A9
+}
+
+#nextPage, #prePage {
+    width: 100px
+}
+
+/*.page_div .current {*/
+/*    background-color: #0073A9;*/
+/*    border-color: #0073A9;*/
+/*    color: #FFF*/
+/*}*/
+ .page_div .current {
+    background-color: blue;
+    border-color: blue;
+    color: #FFF
+}
+
+/* 页面数量 */
+.totalPages {
+    margin: 0 10px
+}
+
+.totalPages span, .totalSize span {
+    color: #0073A9;
+    margin: 0 5px
+}
+
+/* button禁用 */
+.page_div button:disabled {
+    opacity: .5;
+    cursor: no-drop
+}
